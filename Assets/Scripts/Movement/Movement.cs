@@ -12,10 +12,11 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private float speed; //Velocidad de movimiento
     [SerializeField] private float run_speed;//Velocidad de movimiento al correr
-
+    [SerializeField] private Camera cam;
     public Rigidbody rb;
     private void Start()
     {
+        cam = Camera.main;
     }
 
     void Update() {
@@ -29,7 +30,10 @@ public class Movement : MonoBehaviour
                 SetState(State.running);
             }
         }
-        
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            SetState(State.shooting);
+        }
         
     }
     //Movimiento normal
@@ -58,6 +62,15 @@ public class Movement : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(new_rotation.normalized);
         
     }
+
+    private void MouseLook()
+    {
+        Vector3 pjPos = cam.WorldToViewportPoint(transform.position);
+        Vector3 mousepos = (Vector2)cam.ScreenToViewportPoint(Input.mousePosition);
+        Vector3 direccion = mousepos - pjPos;
+        float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg - 90.0f;
+        transform.rotation = Quaternion.Euler(new Vector3(0, -angulo, 0));
+    }
     private void SetState(State currentstate)
     {
         switch (currentstate)
@@ -66,13 +79,28 @@ public class Movement : MonoBehaviour
                 break;
             case State.running:
                 Run();
-                Rotar();
+                if (!Input.GetKey(KeyCode.Mouse1))
+                {
+                    Rotar();
+                }
                 break;
             case State.shooting:
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    Run();
+                }
+                else
+                {
+                    Move();
+                }
+                MouseLook();
                 break;
             case State.walking:
-                Move();
-                Rotar();
+                Move(); 
+                if (!Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    Rotar();
+                }
                 break;
         }
     }
