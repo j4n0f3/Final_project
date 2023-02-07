@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lerptime;
     [SerializeField] private float max_distace;
+    [SerializeField] private float min_distace;
     //------------------------------------------------
     //Ataque
     [SerializeField] private GameObject bullet;
@@ -51,7 +52,7 @@ public class Enemy : MonoBehaviour
         Vector3 newpos = player.transform.position - transform.position;
         float distance = newpos.magnitude; 
         //Checkea si esta a suficiente distancia para moverse
-        if (distance > max_distace)
+        if (distance > max_distace && distance < min_distace)
         {
             transform.position += newpos.normalized * (speed * Time.deltaTime);
         }
@@ -65,32 +66,22 @@ public class Enemy : MonoBehaviour
     }
     private void ShootingPlayer()
     {
-        delay -= redux_delay * Time.deltaTime;
+        Vector3 newpos = player.transform.position - transform.position;
+        float distance = newpos.magnitude;
+        if(delay > 0)
+        {
+            delay -= redux_delay * Time.deltaTime;
+        }
         if (delay < 1)
-        { 
+        {  
+            if (distance > max_distace && distance < min_distace)
+            {
                 Instantiate(bullet, cannon);
                 delay = aux_delay;
+            }
         }
     }
 
-    //Recibo la vida actual del LifeController del enemigo
-    public void LowLife()
-    {
-        //Cambio la prioridad del enemigo para que vaya a un area de sanacion
-        Vector3 inicial_rotation = GameObject.Find("Enemy_Heal_Area").transform.position - transform.position;
-        Quaternion final_rotation = Quaternion.LookRotation(inicial_rotation);
-        transform.rotation = Quaternion.Lerp(transform.rotation, final_rotation, lerptime * speed * Time.deltaTime);
-
-         //Su movimiento se hara en el vector que apunta al area
-         Vector3 newpos = GameObject.Find("Enemy_Heal_Area").transform.position - transform.position;
-         float distance = newpos.magnitude;
-
-         //Checkea si esta a suficiente distancia para moverse
-         if (distance > 1.0f)
-         {
-            transform.position += newpos.normalized * (speed * Time.deltaTime);
-         }
-    }
 
     private void E_State(Enemy_state state)
     {
@@ -102,7 +93,6 @@ public class Enemy : MonoBehaviour
                 ShootingPlayer();
                 break;
             case Enemy_state.dying:
-                LowLife();
                 break;
         }
     }

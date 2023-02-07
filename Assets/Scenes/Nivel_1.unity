@@ -744,7 +744,8 @@ MonoBehaviour:
   player: {fileID: 1527939396}
   speed: 5
   lerptime: 1
-  max_distace: 7
+  max_distace: 14
+  min_distace: 21
   bullet: {fileID: 1646239402572721344, guid: 829597a3be0887943933332c87a2b4c7, type: 3}
   cannon: {fileID: 1678153128}
   delay: 3
@@ -885,7 +886,8 @@ MonoBehaviour:
   player: {fileID: 1527939396}
   speed: 5
   lerptime: 1
-  max_distace: 7
+  max_distace: 14
+  min_distace: 21
   bullet: {fileID: 1646239402572721344, guid: 829597a3be0887943933332c87a2b4c7, type: 3}
   cannon: {fileID: 708905117}
   delay: 3
@@ -2378,7 +2380,8 @@ MonoBehaviour:
   player: {fileID: 1527939396}
   speed: 5
   lerptime: 1
-  max_distace: 7
+  max_distace: 14
+  min_distace: 21
   bullet: {fileID: 1646239402572721344, guid: 829597a3be0887943933332c87a2b4c7, type: 3}
   cannon: {fileID: 1699146907}
   delay: 3
@@ -2652,7 +2655,8 @@ MonoBehaviour:
   player: {fileID: 1527939396}
   speed: 5
   lerptime: 1
-  max_distace: 7
+  max_distace: 14
+  min_distace: 21
   bullet: {fileID: 1646239402572721344, guid: 829597a3be0887943933332c87a2b4c7, type: 3}
   cannon: {fileID: 557813447}
   delay: 3
@@ -2837,7 +2841,8 @@ MonoBehaviour:
   player: {fileID: 1527939396}
   speed: 5
   lerptime: 1
-  max_distace: 7
+  max_distace: 14
+  min_distace: 21
   bullet: {fileID: 1646239402572721344, guid: 829597a3be0887943933332c87a2b4c7, type: 3}
   cannon: {fileID: 2122075542}
   delay: 3
@@ -3795,7 +3800,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!4 &1527939401
 Transform:
   m_ObjectHideFlags: 0
@@ -5130,6 +5135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244777181004326516, guid: 180c64221121e37459b3e9328a82f47c,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8645296844467057697, guid: 180c64221121e37459b3e9328a82f47c,
         type: 3}
