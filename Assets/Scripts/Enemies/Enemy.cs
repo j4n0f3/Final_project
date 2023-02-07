@@ -22,8 +22,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float delay;
     private float aux_delay;
     [SerializeField] private float redux_delay; //reduccion de delay para los amigos
-    //------------------------------------------------
-    //Vida
+    //------------------------------------------------    //Vida
     private int aux;
     //------------------------------------------------
     void Start()

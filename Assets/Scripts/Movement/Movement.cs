@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
     }
 
     void Update() {
+        cam = Camera.main;
         //Estado de caminar solamente
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {

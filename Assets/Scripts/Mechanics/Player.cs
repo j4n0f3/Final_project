@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         delay_bullet -= time_delay_redux * Time.deltaTime;
         if (delay_bullet < 1)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.Mouse1))
             {
                 Shoot();
                 delay_bullet = aux_delay;

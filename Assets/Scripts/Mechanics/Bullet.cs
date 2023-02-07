@@ -27,8 +27,10 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject victima = collision.gameObject;
-        victima.GetComponent<Life_Controller>().BeingDamaged(damage);
+        if (collision.gameObject.GetComponent<Life_Controller>() != null)
+        {
+            collision.gameObject.GetComponent<Life_Controller>().BeingDamaged(damage);
+        }
         BulletDestruction();
     }
     private void BulletDestruction()
