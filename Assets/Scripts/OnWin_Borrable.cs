@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OnWin_Borrable : MonoBehaviour
 {
-    private float delay;
+    [SerializeField] private float delay;
     private float aux;
     // Start is called before the first frame update
     void Start()
