@@ -19,15 +19,20 @@ public class Enemy : MonoBehaviour
     //------------------------------------------------
     //Ataque
     [SerializeField] private GameObject bullet;
+    [SerializeField] private Animator enemyAnimator;
     [SerializeField] private Transform cannon;
     [SerializeField] private float delay;
     private float aux_delay;
-    [SerializeField] private float redux_delay; //reduccion de delay para los amigos
-    //------------------------------------------------    //Vida
+    [SerializeField] private float redux_delay; //reduccion de delay
+    //------------------------------------------------ 
     private int aux;
+    //------------------------------------------------
+    //Scoring
+    private GameObject scores;
     //------------------------------------------------
     void Start()
     {
+        scores = GameObject.Find("Hud");
         aux_delay = delay;
         aux = gameObject.GetComponent<Life_Controller>().LifeCounter();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -45,6 +50,11 @@ public class Enemy : MonoBehaviour
             //En caso de haber perdido demasiada vida, el enemigo huira hasta el area de sanacion mas cercana
             E_State(Enemy_state.dying);
         }
+        //Anotando Puntos
+        if (gameObject.GetComponent<Life_Controller>().LifeCounter() < 1)
+        {
+            scores.GetComponent<Scores>().Scoring(1);
+        }
     }
     private void Chase()
     {
@@ -54,7 +64,12 @@ public class Enemy : MonoBehaviour
         //Checkea si esta a suficiente distancia para moverse
         if (distance > max_distace && distance < min_distace)
         {
+            enemyAnimator.SetBool("Chase", true);
             transform.position += newpos.normalized * (speed * Time.deltaTime);
+        }
+        else
+        {
+            enemyAnimator.SetBool("Chase", false);
         }
     }
     private void Rotate_Towards_Player()
@@ -74,12 +89,19 @@ public class Enemy : MonoBehaviour
         }
         if (delay < 1)
         {  
-            if (distance > max_distace && distance < min_distace)
+            if (distance < min_distace)
             {
                 Instantiate(bullet, cannon);
+                enemyAnimator.SetBool("Firing", true);
                 delay = aux_delay;
             }
+            else 
+            {
+                enemyAnimator.SetBool("Firing", false);
+            }
+            
         }
+        
     }
 
 

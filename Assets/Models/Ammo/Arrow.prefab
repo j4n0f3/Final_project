@@ -115,6 +115,9 @@ MonoBehaviour:
   lifeloose: 1
   speed: 10
   damage: 10
+  OnMiss: {fileID: 8723136654410072033, guid: e84ae5c79fa10cb42a0f6be91405206a, type: 3}
+  OnHit: {fileID: 8944993460823656243, guid: 77f6bb8f454ea2e4aa3c93e8d998dbaf, type: 3}
+  audioLifetime: 1
 --- !u!54 &7674334959860149041
 Rigidbody:
   m_ObjectHideFlags: 0

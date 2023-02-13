@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnWin_Borrable : MonoBehaviour
+public class ObstacleDestruction : MonoBehaviour
 {
-    [SerializeField] private float delay;
+    private float delay;
     private float aux;
     // Start is called before the first frame update
     void Start()

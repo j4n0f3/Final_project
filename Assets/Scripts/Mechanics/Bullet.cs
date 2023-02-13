@@ -8,6 +8,9 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float lifeloose;
     [SerializeField] private float speed;
     [SerializeField] private int damage;
+    //Audio
+    [SerializeField] private GameObject OnMiss;
+    [SerializeField] private GameObject OnHit;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +32,12 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Life_Controller>() != null)
         {
+            Instantiate(OnHit);
             collision.gameObject.GetComponent<Life_Controller>().BeingDamaged(damage);
+        }
+        else
+        {
+            Instantiate(OnMiss);
         }
         BulletDestruction();
     }
