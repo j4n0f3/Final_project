@@ -13,6 +13,8 @@ public enum animstate
 public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] private Animator pjAnim;
+    [SerializeField] private Animator gunAnim;
+    [SerializeField] private Animator laserAnim;
     [SerializeField] private float speed;
     [SerializeField] private float run_speed;
     private float life;
@@ -38,10 +40,11 @@ public class PlayerAnimations : MonoBehaviour
             SetAnimState(animstate.stoping);
         //-----------------------------------------------------------------------------------------------------------
         }
-        //Apunando
+        //Apuntando
         if (Input.GetKey(KeyCode.Mouse1))
         {
             SetAnimState(animstate.aiming);
+
             //-----------------------------------------------------------------------------------------------------------  
             //Disparando
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -59,6 +62,8 @@ public class PlayerAnimations : MonoBehaviour
         else
         {
             pjAnim.SetBool("aim", false);
+            gunAnim.SetBool("IsShooting", false);
+            laserAnim.SetBool("IsShooting", false);
         }
 
         
@@ -94,6 +99,8 @@ public class PlayerAnimations : MonoBehaviour
             case animstate.aiming:
                 //CODE Apuntando
                 pjAnim.SetBool("aim", true);
+                gunAnim.SetBool("IsShooting", true);
+                laserAnim.SetBool("IsShooting", true);
                 //-----------------------------------------------------------------------------------------------------------
                 break;
             case animstate.shooting:

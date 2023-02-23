@@ -14,6 +14,11 @@ public class Movement : MonoBehaviour
     [SerializeField] private float run_speed;//Velocidad de movimiento al correr
     [SerializeField] private Camera cam;
     public Rigidbody rb;
+    private void Awake()
+    {
+        speed *= 100;
+        run_speed *= 100;
+    }
     private void Start()
     {
         cam = Camera.main;
@@ -22,7 +27,7 @@ public class Movement : MonoBehaviour
     void Update() {
         cam = Camera.main;
         //Estado de caminar solamente
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.Mouse1))
         {
             SetState(State.walking);
             //Estado de correr
@@ -40,14 +45,15 @@ public class Movement : MonoBehaviour
     //Movimiento normal
     private void Move()
     {
+        
         Vector3 base_movement = new(Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
-        transform.position += base_movement.normalized * (speed * Time.deltaTime);
+        rb.velocity = base_movement.normalized * speed * Time.deltaTime;
     }
     //Movimiento corriendo
     private void Run()
     {
         Vector3 base_movement = new (Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
-        transform.position += base_movement.normalized * (run_speed * Time.deltaTime);
+        rb.velocity = base_movement.normalized * run_speed * Time.deltaTime;
     }
     private void Rotar()
     {
@@ -86,7 +92,7 @@ public class Movement : MonoBehaviour
                 }
                 break;
             case State.shooting:
-                if (Input.GetKeyDown(KeyCode.LeftShift))
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
                     Run();
                 }

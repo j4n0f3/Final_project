@@ -19,7 +19,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        delay_bullet -= time_delay_redux * Time.deltaTime;
+        if (delay_bullet > 0)
+        {
+            delay_bullet -= time_delay_redux * Time.deltaTime;
+        }
+        
         if (delay_bullet < 1)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.Mouse1))
@@ -27,8 +31,8 @@ public class Player : MonoBehaviour
                 Shoot();
                 delay_bullet = aux_delay;
             }
-            
         }
+        Debug.DrawRay(cannon.position, cannon.forward, Color.red);
     }
 
 

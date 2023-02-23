@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     //Ataque
     [SerializeField] private GameObject bullet;
     [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private Animator enemyWeaponAnimator;
     [SerializeField] private Transform cannon;
     [SerializeField] private float delay;
     private float aux_delay;
@@ -67,10 +68,6 @@ public class Enemy : MonoBehaviour
             enemyAnimator.SetBool("Chase", true);
             transform.position += newpos.normalized * (speed * Time.deltaTime);
         }
-        else
-        {
-            enemyAnimator.SetBool("Chase", false);
-        }
     }
     private void Rotate_Towards_Player()
     {
@@ -93,11 +90,14 @@ public class Enemy : MonoBehaviour
             {
                 Instantiate(bullet, cannon);
                 enemyAnimator.SetBool("Firing", true);
+                enemyWeaponAnimator.SetBool("Shoot", true);
                 delay = aux_delay;
             }
             else 
             {
                 enemyAnimator.SetBool("Firing", false);
+                enemyAnimator.SetBool("Chase", false);
+                enemyWeaponAnimator.SetBool("Shoot", false);
             }
             
         }
