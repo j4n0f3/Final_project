@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform cannon;
     [SerializeField] private float delay_bullet;
+    [SerializeField] private Slider bulletUI;
     private float aux_delay;
     [SerializeField] private float time_delay_redux;
 
@@ -14,6 +16,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         aux_delay = delay_bullet;
+        bulletUI.maxValue = aux_delay;
     }
 
     // Update is called once per frame
@@ -24,7 +27,7 @@ public class Player : MonoBehaviour
             delay_bullet -= time_delay_redux * Time.deltaTime;
         }
         
-        if (delay_bullet < 1)
+        if (delay_bullet < 0)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.Mouse1))
             {
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour
                 delay_bullet = aux_delay;
             }
         }
+        bulletUI.value = delay_bullet;
         Debug.DrawRay(cannon.position, cannon.forward, Color.red);
     }
 

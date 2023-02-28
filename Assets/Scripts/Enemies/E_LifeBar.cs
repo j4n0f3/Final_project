@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class E_LifeBar : MonoBehaviour
 {
-    [SerializeField] private GameObject enemy;
+    private GameObject enemy;
     private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        enemy = gameObject;
     }
 
     // Update is called once per frame

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Enemy_state
 {
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
     //------------------------------------------------
     //Ataque
     [SerializeField] private GameObject bullet;
+    [SerializeField] private Slider shootSHOW;
     [SerializeField] private Animator enemyAnimator;
     [SerializeField] private Animator enemyWeaponAnimator;
     [SerializeField] private Transform cannon;
@@ -37,7 +39,7 @@ public class Enemy : MonoBehaviour
         aux_delay = delay;
         aux = gameObject.GetComponent<Life_Controller>().LifeCounter();
         player = GameObject.FindGameObjectWithTag("Player");
-        
+        shootSHOW.maxValue = aux_delay;
     }
 
     void Update()
@@ -78,13 +80,14 @@ public class Enemy : MonoBehaviour
     }
     private void ShootingPlayer()
     {
+        shootSHOW.value = delay;
         Vector3 newpos = player.transform.position - transform.position;
         float distance = newpos.magnitude;
         if(delay > 0)
         {
             delay -= redux_delay * Time.deltaTime;
         }
-        if (delay < 1)
+        if (delay < 0)
         {  
             if (distance < min_distace)
             {
