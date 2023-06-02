@@ -9,4 +9,9 @@ public class GameConfig : MonoBehaviour
     {
         Application.targetFrameRate = 60;
     }
+
+    private void Update()
+    {
+    }
+   
 }

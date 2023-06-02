@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2121555105430090891}
   - component: {fileID: 6484003129079466684}
   - component: {fileID: 4437158502361992390}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Bala
-  m_TagString: Untagged
+  m_TagString: PJBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

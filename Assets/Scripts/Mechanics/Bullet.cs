@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour
     //Audio
     [SerializeField] private GameObject onMiss;
     [SerializeField] private GameObject onHit;
-
     // Start is called before the first frame update
     void Start()
     {

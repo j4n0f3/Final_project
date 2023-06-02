@@ -11,6 +11,7 @@ public enum State{
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float speed; //Velocidad de movimiento
+    [SerializeField] private float mouse_speed;
     [SerializeField] private float run_speed;//Velocidad de movimiento al correr
     [SerializeField] private Camera cam;
     public Rigidbody rb;
@@ -72,11 +73,11 @@ public class Movement : MonoBehaviour
 
     private void MouseLook()
     {
-        Vector3 pjPos = cam.WorldToViewportPoint(transform.position);
+        Vector3 pjworldpos = cam.WorldToViewportPoint(transform.position);
         Vector3 mousepos = (Vector2)cam.ScreenToViewportPoint(Input.mousePosition);
-        Vector3 direccion = mousepos - pjPos;
-        float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg - 90.0f;
-        transform.rotation = Quaternion.Euler(new Vector3(0, -angulo, 0));
+        Vector3 direction = mousepos - pjworldpos;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90.0f;
+        transform.rotation = Quaternion.Euler(new Vector3(0, -angle, 0));
     }
     private void SetState(State currentstate)
     {

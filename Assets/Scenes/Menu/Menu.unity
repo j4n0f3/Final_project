@@ -606,6 +606,7 @@ GameObject:
   - component: {fileID: 548526204}
   - component: {fileID: 548526203}
   - component: {fileID: 548526202}
+  - component: {fileID: 548526205}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -663,6 +664,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &548526205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548526201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6e39fd531e6f443b10286f89cc09f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &774469008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,10 +1025,10 @@ RectTransform:
   m_Father: {fileID: 36643871}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.00048828125, y: 0}
-  m_SizeDelta: {x: -9.119995, y: 3.9900055}
+  m_SizeDelta: {x: 788.88, y: 145.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &923302586
 MonoBehaviour:
@@ -1060,7 +1073,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 923302587}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 548526205}
+        m_TargetAssemblyTypeName: Scene_Control, Assembly-CSharp
+        m_MethodName: Loadscene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Nivel_1
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &923302587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,8 +1153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6e39fd531e6f443b10286f89cc09f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene:
-    m_Handle: 0
 --- !u!4 &934045584
 Transform:
   m_ObjectHideFlags: 0
@@ -1450,10 +1473,10 @@ RectTransform:
   m_Father: {fileID: 124637237}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0021972656, y: -0.00012207031}
-  m_SizeDelta: {x: -15.400024, y: 8.020004}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -0.0021972656, y: -155.50012}
+  m_SizeDelta: {x: 1518.6, y: 319.02002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1596650171
 MonoBehaviour:
@@ -1879,7 +1902,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.00061035156, y: 0.00030517578}
-  m_SizeDelta: {x: -15.609985, y: 6.5599976}
+  m_SizeDelta: {x: -13.609985, y: 6.5599976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1924092366
 MonoBehaviour:

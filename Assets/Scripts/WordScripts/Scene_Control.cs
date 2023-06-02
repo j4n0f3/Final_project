@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Scene_Control : MonoBehaviour
 {
-    public Scene scene;
 
-    public void Loadscene()
+    public void Loadscene(string escena)
     {
-        SceneManager.SetActiveScene(scene);
+        SceneManager.LoadScene(escena);
     }
 }

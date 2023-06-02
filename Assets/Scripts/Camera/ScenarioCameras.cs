@@ -2,49 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScenarioCameras : MonoBehaviour
+public class ScenarioCameras : CameraColliders
 {
-    [SerializeField] private float delay;
-    private float aux;
-    [SerializeField] private GameObject first;
-    [SerializeField] private GameObject second;
-    private bool camState;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Collider puerta;
+
+    private void Update()
     {
-        delay = 2;
-        aux = delay;
-        camState = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter()
     {
-        if (delay > -1)
+        if (puerta.gameObject.tag == "Player")
         {
-            delay -= 1 * Time.deltaTime;
+            Debug.Log("Change");
         }
-        
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            if (delay < 1 && camState == true)
-            {
-                first.SetActive(false);
-                second.SetActive(true);
-                camState = false;
-                delay = aux;
-            }
-            if (delay < 1 && camState == false)
-            {
-                first.SetActive(true);
-                second.SetActive(false);
-                camState = true;
-                delay = aux;
-            }
-        }
-        
     }
 }
